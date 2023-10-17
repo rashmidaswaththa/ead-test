@@ -1,0 +1,159 @@
+.navigation {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: black;
+    color: white;
+    box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+}
+
+.brand-name {
+    text-decoration: none;
+    color: #FFA500;
+    font-size: 50px;
+    margin-left: 20px;
+}
+
+.navigation-menu {
+    margin-right: auto;
+    padding-left: 30px;
+    padding-top: 15px;
+}
+
+
+.navigation-menu ul {
+    display: flex;
+    padding: 0;
+}
+
+.navigation-menu li {
+    /* removes default disc bullet for li tags and applies margin to left & right side */
+    list-style-type: none;
+    margin: 0 20px;
+}
+
+.navigation-menu li a {
+    /* // increases the surface area of the anchor tag to span more than just the anchor text */
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+}
+
+.hamburger {
+    /* // removes default border on button element */
+    border: 0;
+    height: 40px;
+    width: 40px;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: #283b8b;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    /* // positions the icon to the right and center aligns it vertically */
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    display: none;
+}
+
+.hamburger:hover {
+    background-color: #2642af;
+}
+
+.logout-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.logout-popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 150px;
+    background-color: white;
+    padding: 20px;
+}
+
+.logout-popup-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logout-popup-buttons button {
+    margin: 0 10px;
+}
+
+.profile {
+    display: flex;
+
+}
+
+.details p {
+    display: inline-block;
+    font-size: 22px;
+    padding-top: 10px;
+}
+
+.details p:nth-child(2) {
+    margin-left: 15px;
+}
+
+.link {
+    padding-top: 15px;
+}
+
+.icon {
+    background-image: url(../components/Assets/Train/user.png);
+}
+
+.logout-text {
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.logout-popup-content {
+    width: 600px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: wheat;
+    border: none;
+}
+
+.log-btn {
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+    margin-left: 2px;
+    font-size: 20px;
+}
+
+.log-btn:hover {
+    background-color: white;
+    border: 2px solid;
+    border-color: red;
+    color: red;
+    font-weight: bold;
+
+
+}
