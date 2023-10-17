@@ -47,6 +47,7 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
+    margin-top: 70px;
 }
 
 .booking-table th,
@@ -139,7 +140,7 @@
 }
 
 .add-new-booking-btn {
-    position: fixed;
+    position:absolute;
     /* top: 50px; */
     /* right: 50px; */
     background-color: black;
@@ -157,7 +158,7 @@
 }
 
 .cancel-reservation-btn {
-    position: fixed;
+    position: absolute;
     /* top: 50px; */
     /* right: 50px; */
     background-color: black;

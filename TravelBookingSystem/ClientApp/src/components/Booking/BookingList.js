@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../../styles/Booking/BookingList.css";
+import Nav from "../NavbarAgent";
+import axios from "axios";
 
 function ScheduleList() {
     const [bookings, setBookings] = useState([]);
@@ -34,55 +36,67 @@ function ScheduleList() {
 
     const handleCancelReservation = () => {
         if (!cancellationReservationId) {
-          alert("Please enter a valid Reservation ID.");
-          return;
+            alert("Please enter a valid Reservation ID.");
+            return;
         }
-      
+    
         // Find the reservation with the given ID
         const reservationToCancel = bookings.find(
-          (booking) => booking.bookingId === cancellationReservationId
+            (booking) => booking.bookingId === cancellationReservationId
         );
-      
+    
         if (!reservationToCancel) {
-          alert("SORRY! Reservation not found. Please check the Reservation ID and Try Again!");
+            alert("SORRY! Reservation not found. Please check the Reservation ID and Try Again!");
         } else {
-          // Calculate the difference between the journeyDate and the current date
-          const journeyDate = new Date(reservationToCancel.journeyDate);
-          const currentDate = new Date();
-          const timeDifference = journeyDate.getTime() - currentDate.getTime();
-          const daysDifference = timeDifference / (1000 * 3600 * 24);
-      
-          if (daysDifference > 5) {
-            // Reservation can be canceled
-            // Update the reservationStatus to "Cancelled"
-            const updatedReservation = {
-              ...reservationToCancel,
-              reservationStatus: "Cancelled",
-            };
-      
-            // Update the reservation in the state
-            setBookings((prevBookings) =>
-              prevBookings.map((booking) =>
-                booking.id === reservationToCancel.bookingId
-                  ? updatedReservation
-                  : booking
-              )
-            );
-      
-            // Close the cancellation dialog
-            closeCancellationDialog();
-      
-            // You can also send a PUT request to update the reservation status on the server if needed
-      
-            alert("Reservation has been successfully cancelled.");
-          } else {
-            // Reservation cannot be canceled
-            alert("Reservation cannot be cancelled since it has less than 5 days for the Journey.");
-          }
+            // Calculate the difference between the journeyDate and the current date
+            const journeyDate = new Date(reservationToCancel.journeyDate);
+            const currentDate = new Date();
+            const timeDifference = journeyDate.getTime() - currentDate.getTime();
+            const daysDifference = timeDifference / (1000 * 3600 * 24);
+    
+            if (daysDifference > 5) {
+                // Reservation can be canceled
+                // Update the reservationStatus to "Cancelled"
+                const updatedReservation = {
+                    ...reservationToCancel,
+                    reservationStatus: "Cancelled",
+                };
+    
+                // Send a PUT request to update the reservation status on the server
+                axios
+                    .put(`/api/bookings/${reservationToCancel.bookingId}`, updatedReservation)
+                    .then((response) => {
+                        // Handle the response from the server if needed
+                        // For example, you can check if the update was successful
+                        if (response.status === 200) {
+                            // Update the reservation in the state
+                            setBookings((prevBookings) =>
+                                prevBookings.map((booking) =>
+                                    booking.id === reservationToCancel.bookingId
+                                        ? updatedReservation
+                                        : booking
+                                )
+                            );
+    
+                            // Close the cancellation dialog
+                            closeCancellationDialog();
+    
+                            alert("Failed to update the reservation status on the server.");
+                        } else {
+                            alert("Reservation has been successfully cancelled");
+                        }
+                    })
+                    .catch((error) => {
+                        alert("An error occurred while updating the reservation status on the server.");
+                        console.error(error);
+                    });
+            } else {
+                // Reservation cannot be canceled
+                alert("Reservation cannot be cancelled since it has less than 5 days for the Journey.");
+            }
         }
-      };
-      
-
+    };
+    
     const openCancellationDialog = () => {
         setCancellationDialogOpen(true);
     };
@@ -207,6 +221,7 @@ function ScheduleList() {
 
     return (
         <div className='add-background'>
+            <Nav /> <br />
             <h2>BOOKING LIST</h2>
             <div className="booking-list-container">
                 <div className="booking-search">
@@ -242,8 +257,8 @@ function ScheduleList() {
                             value={cancellationReservationId}
                             onChange={(e) => setCancellationReservationId(e.target.value)}
                         />
-                        <button className="confirm-cancel-reservation-btn" onClick={handleCancelReservation}>Cancel Reservation</button>
-                        <button className="confirm-close-reservation-btn" onClick={closeCancellationDialog}>Close</button>
+                        <button className="confirm-cancel-reservation-btn" onClick={handleCancelReservation}>CONFIRM CANCEL</button>
+                        <button className="confirm-close-reservation-btn" onClick={closeCancellationDialog}>CLOSE</button>
                     </div>
                 )}
                 <table className="booking-table">
@@ -261,9 +276,9 @@ function ScheduleList() {
                             <th>Train Class</th>
                             <th>No of Passengers</th>
                             <th>Ticket Price (Per Person - Rs.)</th>
-                            <th>Totala Amount (Rs.)</th>
+                            <th>Total Amount (Rs.)</th>
                             <th>Reservation Status</th>
-                            <th>Actions</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

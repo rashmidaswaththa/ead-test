@@ -14,7 +14,7 @@
 }
 
 .add-new-schedule-btn {
-    position: fixed;
+    position: absolute;
     /* top: 50px; */
     /* right: 50px; */
     background-color: black;

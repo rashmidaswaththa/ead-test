@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../styles/OfficerHome/OfficerCSS.css";
+import "../styles/OfficerHome/OfficerHome.css";
 import Nav from "./Navbar";
 import { useNavigate } from 'react-router-dom';
 
@@ -30,10 +30,10 @@ function Officer() {
 
     return (
         
-        <div className="add-background">
+        <div className="add-background-officer">
             <Nav />
-            <div className="button-background">
-                <div className="main-btn-div">
+            <div className="button-background-officer">
+                <div className="main-btn-div-officer">
                     <div className="btn-div">
                         <button className="btn" onClick={() => handleUser()}>User Management</button>
                     </div>

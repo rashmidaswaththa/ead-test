@@ -49,7 +49,7 @@ export default function Navbar() {
             >
                 <ul>
                     <li className="link">
-                        <a href="/officer">HOME</a>
+                        <a href="/agent">HOME</a>
                     </li>
                     <li className="link">
                         <a className="logout" onClick={() => setIsLogoutPopupOpen(true)}>

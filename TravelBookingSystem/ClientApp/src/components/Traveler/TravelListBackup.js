@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../../styles/User/UserListCss.css";
+import Nav from "../NavbarOfficer";
 
 function TravelersList() {
     //set state for travelers details
@@ -134,10 +135,11 @@ function TravelersList() {
 
     return (
         <div className="add-background">
+            <Nav/>
             <br></br>
             <br></br>
             <br></br>
-            <h2>Traveler List</h2>
+            <h2>TRAVELERS LIST</h2>
 
             <div className="schedule-list-container">
                 <div className="schedule-search">

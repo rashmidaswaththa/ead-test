@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/Train/TrainList.css";
+import Nav from "../NavbarOfficer";
 
 function TrainList() {
     const [trains, setTrains] = useState([]);
@@ -77,6 +78,7 @@ function TrainList() {
 
     return (
         <div className='add-background'>
+            <Nav/><br/>
             <h2>TRAIN LIST</h2>
             <div className="train-list-container">
                 <div className="train-list-search">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../../styles/Schedule/ScheduleList.css";
+import Nav from "../NavbarOfficer";
 
 function ScheduleList() {
     const [schedules, setSchedules] = useState([]);
@@ -212,6 +213,7 @@ function ScheduleList() {
 
     return (
         <div className='add-background'>
+            <Nav/> <br/>
             <h2>SCHEDULE LIST</h2>
             <div className="schedule-list-container">
                 <div className="schedule-search">

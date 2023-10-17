@@ -12,8 +12,13 @@
 .brand-name {
     text-decoration: none;
     color: #FFA500;
-    font-size: 50px;
+    font-size: 30px;
     margin-left: 20px;
+    font-style: italic;
+}
+
+.brand-name:hover {
+    color: white;
 }
 
 .navigation-menu {
@@ -38,7 +43,7 @@
     /* // increases the surface area of the anchor tag to span more than just the anchor text */
     text-decoration: none;
     color: white;
-    font-size: 18px;
+    font-size: 22px;
     display: block;
     width: 100%;
 }
@@ -100,10 +105,20 @@
 
 }
 
-.details p {
+.details-name {
     display: inline-block;
-    font-size: 22px;
-    padding-top: 10px;
+    font-size: 18px;
+    padding-top: 15px;
+    font-style: italic;
+    margin-left: 650px;
+}
+
+.details-email {
+    display: inline-block;
+    font-size: 18px;
+    padding-top: -5px;
+    font-style: italic;
+    margin-left: 650px;
 }
 
 .details p:nth-child(2) {
@@ -111,7 +126,10 @@
 }
 
 .link {
-    padding-top: 15px;
+    padding-top: 40px;
+    /* font-weight: bold; */
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 24px;
 }
 
 .icon {
@@ -156,4 +174,13 @@
     font-weight: bold;
 
 
+}
+
+.link a:hover{
+    color: #FFA500;
+}
+
+.logout:hover{
+    color: #FFA500;
+    cursor: pointer;
 }

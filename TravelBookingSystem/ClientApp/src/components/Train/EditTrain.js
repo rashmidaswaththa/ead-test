@@ -57,6 +57,16 @@ function EditTrain() {
         }
 
         try {
+            // Calculate available seats for each class
+            const updatedClasses = train.classes.map(cls => {
+                cls.availableSeats = cls.seats;
+                return cls;
+            });
+            // Update the trainData with the calculated available seats
+            setTrain({
+                ...train,
+                classes: updatedClasses,
+            });
             const response = await fetch(`/api/trains/${id}`, {
                 method: 'PUT',
                 headers: {
@@ -83,6 +93,9 @@ function EditTrain() {
         const updatedClasses = [...train.classes];
         updatedClasses[index][name] = value;
 
+        // Calculate and update available seats
+        updatedClasses[index].availableSeats = parseInt(value);
+
         setTrain({
             ...train,
             classes: updatedClasses,
@@ -95,7 +108,7 @@ function EditTrain() {
             ...train,
             classes: [
                 ...train.classes,
-                { className: '', seats: 0, ticketPrice: 0 },
+                { className: '', seats: 0, ticketPrice: 0, availableSeats: 0 },
             ],
         });
     };
@@ -149,16 +162,16 @@ function EditTrain() {
                                 onChange={(e) => handleInputChange(e, index)}
                             />
                             {index > 0 && (
-                                <button className= "remove-class-button"  type="button" onClick={() => handleRemoveClass(index)}>
+                                <button className="remove-class-button" type="button" onClick={() => handleRemoveClass(index)}>
                                     Remove Class
                                 </button>
                             )}
                         </div>
                     ))}
-                    <button  className= "add-class-button" type="button" onClick={handleAddClass}>
+                    <button className="add-class-button" type="button" onClick={handleAddClass}>
                         Add Class
                     </button>
-                    <button className= "edit-train-submit-button" type="submit">SAVE CHANGES</button>
+                    <button className="edit-train-submit-button" type="submit">SAVE CHANGES</button>
                 </form>
             </div>
         </div>

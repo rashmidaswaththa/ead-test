@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "../styles/OfficerHome/OfficerCSS.css";
 import { useNavigate } from 'react-router-dom';
+import "../styles/AgentHome/AgentHome.css";
 import Nav from "./Navbar";
 
 function Agent() {
@@ -15,7 +15,7 @@ function Agent() {
 
     return (
         
-        <div className="add-background">
+        <div className="add-background-agent">
             <Nav />
             <div className="button-background-agent">
                 <div className="main-btn-div">
