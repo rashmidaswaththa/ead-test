@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import "../../styles/User/AddUserCSS.css";
 
+
 function EditTraveler() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({

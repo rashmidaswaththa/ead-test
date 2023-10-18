@@ -205,11 +205,12 @@ function AddBooking() {
 
             // Serialize the bookingData object to JSON
             const requestBody = JSON.stringify(formattedBookingData);
-
+            const authorizationToken = localStorage.getItem("token");
             const response = await fetch('/api/bookings', {
                 method: 'POST',
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${authorizationToken}`,
                 },
                 body: requestBody,
             });

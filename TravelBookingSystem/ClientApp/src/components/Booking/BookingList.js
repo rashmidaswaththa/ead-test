@@ -125,11 +125,12 @@ function ScheduleList() {
                 ...bookings.find((booking) => booking.bookingId === bookingId),
                 reservationStatus: newBookingStatus,
             };
-
+            const authorizationToken = localStorage.getItem("token");
             const response = await fetch(`/api/bookings/${bookingId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${authorizationToken}`,
                 },
                 body: JSON.stringify(updatedBooking),
             });

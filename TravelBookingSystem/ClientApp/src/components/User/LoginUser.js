@@ -133,8 +133,6 @@ function LoginUser() {
             <br></br>
             <br></br>
             <br></br>
-            <br></br>
-            <br></br>
             <h2>Login here</h2>
             <div className="add-schedule-container" >
                 <form onSubmit={addNewUser} className='add-schedule-form'>

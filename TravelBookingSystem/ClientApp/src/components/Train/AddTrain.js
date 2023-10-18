@@ -63,12 +63,13 @@ function AddTrain() {
       });
       // Serialize the trainData object to JSON
       const requestBody = JSON.stringify(trainData);
-
+      const authorizationToken = localStorage.getItem("token");
       // Send POST request to your API endpoint with the "Content-Type" header
       const response = await fetch('/api/trains', {
         method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authorizationToken}`,
         },
         body: requestBody, // Send the serialized JSON data
       });

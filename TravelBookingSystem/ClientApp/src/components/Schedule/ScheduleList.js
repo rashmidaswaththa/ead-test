@@ -48,6 +48,7 @@ function ScheduleList() {
             // Fetch the list of available trains (trainId) from the server
             const response = await fetch("/api/trains");
             if (response.ok) {
+                const authorizationToken = localStorage.getItem("token");
                 const trainData = await response.json();
 
                 // Find and update the train with matching trainId
@@ -58,6 +59,7 @@ function ScheduleList() {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json",
+                            Authorization: `Bearer ${authorizationToken}`,
                         },
                         // body: JSON.stringify({ assignStatus }),
                     });
@@ -97,11 +99,13 @@ function ScheduleList() {
                 ...schedules.find((schedule) => schedule.id === scheduleId),
                 scheduleStatus: newScheduleStatus,
             };
-
+            const authorizationToken = localStorage.getItem("token");
             const response = await fetch(`/api/schedules/${scheduleId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${authorizationToken}`,
+
                 },
                 body: JSON.stringify(updatedSchedule),
             });
@@ -132,10 +136,12 @@ function ScheduleList() {
         const confirmed = window.confirm(`Are you sure you want to delete this schedule record with Schedule ID: ${id.slice(-8)}?`);
 
         if (confirmed) {
+            const authorizationToken = localStorage.getItem("token");
             // Send a DELETE request to remove the schedule from the API
             try {
                 const response = await fetch(`/api/schedules/${id}`, {
                     method: "DELETE",
+                    Authorization: `Bearer ${authorizationToken}`,
                 });
 
                 if (response.ok) {

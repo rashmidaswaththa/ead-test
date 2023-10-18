@@ -67,10 +67,12 @@ function EditTrain() {
                 ...train,
                 classes: updatedClasses,
             });
+            const authorizationToken = localStorage.getItem("token");
             const response = await fetch(`/api/trains/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    Authorization: `Bearer ${authorizationToken}`,
                 },
                 body: JSON.stringify(train), // Send the updated train data
             });

@@ -45,11 +45,12 @@ function TrainList() {
         const confirmDelete = window.confirm(
             `Are you sure you want to delete this train record with Train ID: ${id.slice(-8)}?`
         );
-
+        const authorizationToken = localStorage.getItem("token");
         if (confirmDelete && assignStatus !== "Assigned") {
             try {
                 const response = await fetch(`/api/trains/${id}`, {
                     method: "DELETE",
+                    Authorization: `Bearer ${authorizationToken}`,
                 });
 
                 if (response.ok) {

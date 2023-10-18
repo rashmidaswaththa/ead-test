@@ -97,11 +97,12 @@ function EditSchedule() {
                 arrivalTime: formattedArrivalTime.toISOString(),
                 scheduleDate: scheduleDate, // Set the correctly formatted date
             };
-
+            const authorizationToken = localStorage.getItem("token");
             const response = await fetch(`/api/schedules/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${authorizationToken}`,
                 },
                 body: JSON.stringify(formattedFormData),
             });

@@ -86,12 +86,14 @@ function AddSchedule() {
 
             // Serialize the scheduleData object to JSON
             const requestBody = JSON.stringify(formattedScheduleData);
+            const authorizationToken = localStorage.getItem("token");
 
             // Send POST request to your API endpoint with the "Content-Type" header
             const response = await fetch("/api/schedules", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${authorizationToken}`,
                 },
                 body: requestBody, // Send the serialized JSON data
             });
